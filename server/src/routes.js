@@ -13,29 +13,29 @@ routes.get("/", (req, res) => {
   });
 });
 
-// Autentica usuário
 routes.post("/token", AuthenticationController.authenticate);
+// Autentica usuário
 
 // Middleware para exigir autenticações nas requisições
-routes.use(middlewares.authorizationAttribute);
+if(process.env.NODE_ENV === 'test') middlewares.authorizationAttribute = (req, res, next) => next();
 
 // Retorna todos os devs
-routes.get("/developers", DevelopersController.show);
+routes.get("/developers", middlewares.authorizationAttribute, DevelopersController.show);
 
 // Retorna todos os devs de acordo com query string e paginação
-routes.get("/developers?", DevelopersController.show);
+routes.get("/developers?", middlewares.authorizationAttribute, DevelopersController.show);
 
 // Retorna os dados de um dev
-routes.get("/developers/:id", DevelopersController.index);
+routes.get("/developers/:id", middlewares.authorizationAttribute, DevelopersController.index);
 
 // Adiciona um novo dev
-routes.post("/developers/", DevelopersController.create);
+routes.post("/developers/", middlewares.authorizationAttribute, DevelopersController.create);
 
 // Atualiza os dados de um dev
-routes.put("/developers/:id", DevelopersController.update);
+routes.put("/developers/:id", middlewares.authorizationAttribute, DevelopersController.update);
 
 // Apaga o registro de um de um dev
-routes.delete("/developers/:id", DevelopersController.destroy);
+routes.delete("/developers/:id", middlewares.authorizationAttribute, DevelopersController.destroy);
 
 
 

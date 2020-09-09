@@ -58,6 +58,7 @@ module.exports = {
     try {
       const value = await DevSchema.validateAsync(req.body);
       const inserted = await devs.insert(value);
+
       res.json(inserted);
     } catch (error) {
       next(error);

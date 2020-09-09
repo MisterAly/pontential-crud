@@ -8,7 +8,7 @@ module.exports = {
 
     try {
       if(username && password) {
-        const token = jwt.sign({ username, password } , authConfig.secret, {
+        const token = jwt.sign({ username } , authConfig.secret, {
           expiresIn: 86400
         })
   
