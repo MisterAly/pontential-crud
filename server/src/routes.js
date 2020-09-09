@@ -1,14 +1,23 @@
 const express = require("express");
 
 const routes = express.Router();
+const middlewares = require("./middlewares");
 
 const DevelopersController = require("./controllers/DevelopersController");
+const AuthenticationController = require("./controllers/AuthenticationController");
+
 
 routes.get("/", (req, res) => {
   res.json({
     message: "🏬🚚🎁✔ Gazin",
   });
 });
+
+// Autentica usuário
+routes.post("/token", AuthenticationController.authenticate);
+
+// Middleware para exigir autenticações nas requisições
+routes.use(middlewares.authorizationAttribute);
 
 // Retorna todos os devs
 routes.get("/developers", DevelopersController.show);
@@ -27,5 +36,7 @@ routes.put("/developers/:id", DevelopersController.update);
 
 // Apaga o registro de um de um dev
 routes.delete("/developers/:id", DevelopersController.destroy);
+
+
 
 module.exports = routes;

@@ -37,7 +37,7 @@ module.exports = {
         res.json({ items, total: count });
       }
     } catch (error) {
-      next();
+      next(error);
     }
   },
 
