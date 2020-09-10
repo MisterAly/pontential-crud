@@ -12,15 +12,12 @@ module.exports = {
           expiresIn: 86400
         })
   
-        return res.json({ username, token })
+        res.status(200).json({ username, token })
       } else {
         throw new Error('Falta usuário ou senha')
       }
     } catch (error) {
       next(error)
     }
-
-    
-
   }
 };

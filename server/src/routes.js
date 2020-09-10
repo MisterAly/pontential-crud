@@ -13,8 +13,8 @@ routes.get("/", (req, res) => {
   });
 });
 
-routes.post("/token", AuthenticationController.authenticate);
 // Autentica usuário
+routes.post("/token", AuthenticationController.authenticate);
 
 // Middleware para exigir autenticações nas requisições
 if(process.env.NODE_ENV === 'test') middlewares.authorizationAttribute = (req, res, next) => next();

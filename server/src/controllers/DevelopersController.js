@@ -1,8 +1,6 @@
-const monk = require("monk");
-
+const db = require('../db');
 const DevSchema = require("../models/Dev");
 
-const db = monk(process.env.MONGO_URI);
 const devs = db.get("devs");
 
 module.exports = {
@@ -15,7 +13,7 @@ module.exports = {
     } = req.query;
 
     const limit = 5;
-
+    
     try {
       if (Object.keys(req.query).length !== 0) {
         const query = {

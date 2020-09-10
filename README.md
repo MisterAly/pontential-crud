@@ -1,12 +1,14 @@
-# pontential-crud
+
+
+# Detalhes do Teste:
 Potencial para um crud
 
 
-# Objetivo do teste
+## Objetivo do teste
 Desenvolver uma API JSON REST na *linguagem a sua escolha*, que utilize os métodos (​GET​, ​POST​, ​PUT​,
 DELETE​).
 
-# Especificação
+## Especificação
 Monte uma base de desenvolvedores com a seguinte estrutura:
 
 ```
@@ -20,7 +22,7 @@ datanascimento: date
 Utilize o ​banco de dados​ de sua preferência para armazenar os dados que a API irá
 consumir.
 
-# API endpoints
+## API endpoints
 
 ```
 GET /developers
@@ -59,11 +61,11 @@ Codes 204 / 400
 ```
 Apaga o registro de um desenvolvedor
 
-# DIFERENCIAL PARA VAGA SENIOR -  Frontend
+## DIFERENCIAL PARA VAGA SENIOR -  Frontend
 UI/UX fica a critério do desenvolvedor porém deverá ser SPA (single-page
 application) e atender o consumo de todos endpoints da API 
 
-# Entrega
+## Entrega
 A aplicação deve rodar em docker, possuir um script para geração das tabelas no banco de dados e TESTES UNITÁRIOS.
 
 Após finalizado o link do projeto, por e-mail, no github com explicação no README

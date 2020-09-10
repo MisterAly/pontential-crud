@@ -1,11 +1,16 @@
 const request = require('supertest');
 
 const app = require('../../src/app');
+const db = require('../../src/db')
+
 
 let userId;
 
-describe('Dev controller', () => {
+describe('Dev controller',() => {
 
+  afterAll( async (done) => {
+    await db.close(done);
+  })
 
   it('should return an error when inserting new dev', async () => {
 
@@ -80,13 +85,13 @@ describe('Dev controller', () => {
 
   })
 
-  it('should return success when deleting inserted dev', async () => {
+  it('should return success when deleting inserted dev', async (done) => {
 
     const response = await request(app)
       .delete('/developers/' + userId)
       .send()
-
+    
     expect(response.status).toBe(200)
-
+    done();
   })
 })

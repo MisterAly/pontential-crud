@@ -1,12 +1,12 @@
 {
   "name": "potencial-crud",
   "version": "1.0.0",
-  "description": "",
+  "description": "NodeJs api development",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js --ignore __tests__",
-    "test": "SET NODE_ENV=test& jest"
+    "test": "jest --detectOpenHandles"
   },
   "keywords": [],
   "author": "",
