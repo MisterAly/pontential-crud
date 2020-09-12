@@ -31,9 +31,10 @@ module.exports = {
           skip: (page - 1) * limit,
         } : {}
 
+        const count = await devs.count();
         const items = await devs.find(query, pageConfig);
         
-        res.json({ items, page });
+        res.json({ items, page, total: count });
       } else {
         const count = await devs.count();
         const items = await devs.find({});
