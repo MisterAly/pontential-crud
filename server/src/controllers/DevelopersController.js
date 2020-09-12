@@ -6,28 +6,34 @@ const devs = db.get("devs");
 module.exports = {
   async show(req, res, next) {
     const {
-      page = 1,
+      page,
+      search = "",
       nome = "",
       sexo = "",
       hobby = "",
     } = req.query;
 
-    const limit = 5;
+    const limit = 4;
     
     try {
       if (Object.keys(req.query).length !== 0) {
-        const query = {
-          hobby: { $regex: `(?i)${hobby}` },
-          nome: { $regex: `(?i)${nome}` },
+        const query = {$or:[
+          {hobby: { $regex: `(?i)${search}` }},
+          {nome: { $regex: `(?i)${search}` }},
+          ],
           sexo: { $regex: `(?i)${sexo}` },
+          hobby: { $regex: `(?i)${hobby}`},
+          nome: { $regex: `(?i)${nome}` }
         };
 
-        const items = await devs.find(query, {
+        pageConfig = page ? {
           limit: limit,
           skip: (page - 1) * limit,
-        });
+        } : {}
 
-        res.json({ items, page, limit });
+        const items = await devs.find(query, pageConfig);
+        
+        res.json({ items, page });
       } else {
         const count = await devs.count();
         const items = await devs.find({});
