@@ -1,12 +1,18 @@
 # CRUD Gazin
 
-![Login](/imgs/login.jpg)
-
-![Devs](/imgs/devs.jpg)
-
 ## Descrição
 
   Aplicação do processo seletivo Gazin com API REST com uso de Node.Js e FrontEnd com uso de React.Js
+
+<p align="center">
+  <img src="./imgs/login.jpg" height="418" width="363" alt="Unform" />
+</p>
+
+<p align="center">
+  <img src="./imgs/devs.jpg" height="726" width="748" alt="Unform" />
+</p>
+
+
 
 ## Tabela de conteúdos
    * [Descrição](#descrição)
@@ -35,31 +41,49 @@
 * Ter o [MongoDB](https://docs.mongodb.com/manual/installation/) rodando no sistema (Community Edition - Versão Server)
 
 ## Funcionamento
- 
-Para criar o container a partir da imagem, execute:
 
-    docker build -f application.dockerfile -t beavanzi/dockernode .
+### Docker
 
-Para rodar o container, execute:
+Caso a porta 3000 (React) e 3333 (Node API) esteja livre apenas rode o comando na raiz:
 
-    docker run -p 5000:5000 -d --name crud beavanzi/dockernode
+    docker-compose up -d --build
 
-`Caso a porta 5000 esteja em uso, mapeie outra em "outra_porta_local:5000"`
+### Local
 
-Com isso, o container estará rodando, e uma tabela 'desenvolvedores' será criada nos arquivos do container. Você poderá fazer as requisições na API usando Insomnia, Postman, etc.
+Basta rodar o servidor
 
-Para parar a execução do container, execute:
+    cd ./server/
+    npm start
 
-    docker stop crud
+E o React
 
-Com o container parado, você pode removê-lo usando:
+    cd ./web/
+    npm start
 
-    docker rm crud
+### Acesso
+
+Rotas de acesso podem ser consultadas na [documentação do CRUD](https://github.com/nelsonptobias/pontential-crud)
+
+Servidor web rodando em http://localhost:3000
+
+### Autenticação
+
+Para obter acesso na rota pode usar qualquer usuário e senha na rota /token com o objeto JSON
+
+POST /token
+
+    {
+      "username": "usuario",
+      "password": "123"
+    }
+
+O Login web tbm aceita qualquer usuário e senha. Criado como conceito para uso de autenticação com JWT
 
 ## Testes
 
-Os testes unitários e de integração foram escritos utilizando o Jest e o Supertest. Eles são rodados quando o container é iniciado (é mostrado nos logs do container), mas podem ser executados quando desejar (em uma máquina com NodeJs instalado) com o comando:
+Para rodar todos os testes basta usar os comandos:
 
+    cd ./server/
     npm test
 
 
